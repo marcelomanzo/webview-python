@@ -5,6 +5,10 @@
 #define WEBVIEW_IMPLEMENTATION
 #include "webview.h"
 
+#ifndef PATH_MAX
+#define PATH_MAX MAX_PATH
+#endif
+
 typedef struct { PyObject_HEAD struct webview w; } WebView;
 
 static void WebView_dealloc(WebView *self) {
@@ -114,7 +118,7 @@ static PyObject *WebView_dialog(WebView *self, PyObject *args, PyObject *kwds) {
   int flags = 0;
   const char *title = NULL;
   const char *arg = NULL;
-  char result[260];
+  char result[PATH_MAX];
   static char *kwlist[] = {"type", "flags", "title", "arg", NULL};
   if (!PyArg_ParseTupleAndKeywords(args, kwds, "iiss", kwlist, &type, &flags,
                                    &title, &arg)) {
