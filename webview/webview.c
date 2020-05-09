@@ -114,7 +114,7 @@ static PyObject *WebView_dialog(WebView *self, PyObject *args, PyObject *kwds) {
   int flags = 0;
   const char *title = NULL;
   const char *arg = NULL;
-  char result[PATH_MAX];
+  char result[260];
   static char *kwlist[] = {"type", "flags", "title", "arg", NULL};
   if (!PyArg_ParseTupleAndKeywords(args, kwds, "iiss", kwlist, &type, &flags,
                                    &title, &arg)) {
